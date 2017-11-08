@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="@dimen/margin_medium"
+    android:layout_marginLeft="@dimen/margin_medium"
+    android:layout_marginRight="@dimen/margin_medium"
+    card_view:cardElevation="@dimen/margin_small">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/frameLayout">
+
+            <ImageView
+                android:id="@+id/iv_movie_thumb"
+                android:layout_width="180dp"
+                android:layout_height="200dp"
+                android:src="@drawable/movie_thumb"
+                android:layout_marginLeft="@dimen/margin_large_n"
+                />
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="7.5"
+                android:gravity="center"
+                android:textStyle="bold|italic"
+                android:textColor="@color/white"
+                android:background="@drawable/ic_rating_background_24dp"/>
+
+
+
+
+        </FrameLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_center_focus_24dp"
+            android:layout_alignBottom="@id/frameLayout"
+            android:layout_marginLeft="105dp"
+            android:layout_marginBottom="@dimen/margin_medium"
+
+
+            android:id="@+id/imageView" />
+
+
+        <TextView
+            android:id="@+id/btn_overview"
+            android:layout_width="150dp"
+            android:layout_height="35dp"
+            android:layout_alignBottom="@+id/frameLayout"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="13dp"
+            android:layout_marginEnd="11dp"
+            android:background="@drawable/btn_overview_background"
+            android:clickable="true"
+            android:gravity="center"
+            android:text="@string/movie_overview"
+            android:textColor="@color/white" />
+
+        <!--<RatingBar-->
+            <!--android:id="@+id/ratingBar"-->
+            <!--android:layout_width="180dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--style="?android:attr/ratingBarStyleSmall"-->
+            <!--android:numStars="5"-->
+            <!--android:rating="4"-->
+            <!--android:layout_toEndOf="@+id/imageView" />-->
+
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

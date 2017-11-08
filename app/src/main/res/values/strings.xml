@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Proof of concept</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_one_fragment">Hello one fragment</string>
+    <string name="hello_two_fragment">Hello Two fragment</string>
+    <string name="hello_three_fragment">Hello three fragment</string>
+    <string name="movie_overview">Movie Overview</string>
+</resources>
