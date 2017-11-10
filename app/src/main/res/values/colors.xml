@@ -6,4 +6,8 @@
     <color name="color_btn_overview">#5896D9</color>
 
     <color name="white">#FFFFFF</color>
+
+
+    <color name="gold">#FFDF00</color>
+    <color name="normal">#FFFFFF</color>
 </resources>

@@ -27,13 +27,16 @@
                 />
 
             <TextView
+                android:id="@+id/lbl_ibm_rating"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:text="7.5"
-                android:gravity="center"
-                android:textStyle="bold|italic"
+                android:gravity="center_horizontal"
                 android:textColor="@color/white"
-                android:background="@drawable/ic_rating_background_24dp"/>
+                android:background="@drawable/ic_rating_background_24dp"
+                android:fontFamily="casual"
+                android:textSize="@dimen/text_regular_3x"
+                />
 
 
 
@@ -75,7 +78,52 @@
             <!--android:numStars="5"-->
             <!--android:rating="4"-->
             <!--android:layout_toEndOf="@+id/imageView" />-->
+        <TextView
+            android:id="@+id/lbl_movie_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="The Emoji"
+            android:layout_toRightOf="@id/frameLayout"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginLeft="-16dp"
+            android:textColor="@android:color/black"
+            />
 
+        <TextView
+            android:id="@+id/lbl_movie_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/frameLayout"
+            android:layout_below="@id/lbl_movie_name"
+            android:text="(Animation , Comedy , Fancy)"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginLeft="-16dp"
+            android:textColor="@android:color/black"
+            />
+
+        <TextView
+            android:id="@+id/lbl_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Current Popularity"
+            android:layout_toRightOf="@id/frameLayout"
+            android:layout_below="@id/lbl_movie_category"
+            android:layout_marginTop="@dimen/margin_medium"
+            android:layout_marginLeft="-16dp"
+            android:textColor="@android:color/black"/>
+
+        <RatingBar
+            style = "?android:attr/ratingBarStyleIndicator"
+            android:numStars="6"
+            android:rating="5"
+            android:id="@+id/ratingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/lbl_rating"
+            android:layout_alignStart="@id/lbl_rating"
+            android:theme="@style/RatingBar"
+            android:layout_marginTop="@dimen/margin_medium" />
 
     </RelativeLayout>
 
