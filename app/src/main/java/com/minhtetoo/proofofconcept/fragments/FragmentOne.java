@@ -1,9 +1,7 @@
 package com.minhtetoo.proofofconcept.fragments;
 
 
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.minhtetoo.proofofconcept.Font;
 import com.minhtetoo.proofofconcept.R;
 import com.minhtetoo.proofofconcept.adapters.RecyclerAdapter;
 

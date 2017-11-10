@@ -47,7 +47,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         Typeface font = Typeface.createFromAsset(mcontext.getAssets(), "font.ttf");
         txt.setTypeface(font);
 
-        YoYo.with(Techniques.RubberBand)
+        YoYo.with(Techniques.Shake)
                 .duration(1000)
 
                 .playOn(holder.mview);
