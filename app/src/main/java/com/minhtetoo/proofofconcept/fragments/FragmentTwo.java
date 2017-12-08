@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.minhtetoo.proofofconcept.R;
 
 
-public class FragmentTwo extends Fragment {
+public class FragmentTwo extends BaseFragment {
 
 
     public FragmentTwo() {

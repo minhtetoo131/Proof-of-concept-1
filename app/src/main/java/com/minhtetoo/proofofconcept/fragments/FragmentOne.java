@@ -1,8 +1,9 @@
 package com.minhtetoo.proofofconcept.fragments;
 
 
+import android.content.Context;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -11,15 +12,25 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.minhtetoo.proofofconcept.R;
-import com.minhtetoo.proofofconcept.adapters.RecyclerAdapter;
+import com.minhtetoo.proofofconcept.adapters.PopularMovieRecyclerAdapter;
+import com.minhtetoo.proofofconcept.delegates.PopularMovieDelegate;
+import com.minhtetoo.proofofconcept.events.RestApiEvents;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 
-public class FragmentOne extends Fragment {
+public class FragmentOne extends BaseFragment {
     RecyclerView mrecyclerView ;
 
     View  v;
 
     TextView txt;
+
+    PopularMovieDelegate popularMovieDelegate;
+
+    PopularMovieRecyclerAdapter popularMovieRecyclerAdapter;
 
 
 
@@ -27,6 +38,30 @@ public class FragmentOne extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+
+
+
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+
+        EventBus.getDefault().unregister(this);
+
+        super.onStop();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        popularMovieDelegate  = (PopularMovieDelegate) context;
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -42,7 +77,9 @@ public class FragmentOne extends Fragment {
 
         mrecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-        mrecyclerView.setAdapter(new RecyclerAdapter(getActivity()));
+        popularMovieRecyclerAdapter = new PopularMovieRecyclerAdapter(getContext(),popularMovieDelegate) ;
+
+        mrecyclerView.setAdapter(popularMovieRecyclerAdapter);
 
 
 
@@ -76,4 +113,18 @@ public class FragmentOne extends Fragment {
 //
 //
 //    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onPopularMovieLoaded(RestApiEvents.PopularMovieLoadedEvent event){
+
+        popularMovieRecyclerAdapter.appendPopularMovies(event.getLoadedPopularMovies());
+
+    }
+
+
+    @Subscribe (threadMode = ThreadMode.MAIN)
+    public void onErrorInvokingAPI(RestApiEvents.ErrorInvokingAPIEvent event){
+        Snackbar.make(mrecyclerView,event.getErrorMsg(),Snackbar.LENGTH_INDEFINITE).show();
+
+    }
 }

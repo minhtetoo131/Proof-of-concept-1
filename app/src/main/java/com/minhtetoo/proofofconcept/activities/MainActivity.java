@@ -1,4 +1,4 @@
-package com.minhtetoo.proofofconcept;
+package com.minhtetoo.proofofconcept.activities;
 
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -12,9 +12,11 @@ import android.view.MenuItem;
 import android.widget.TableLayout;
 import android.widget.Toast;
 
+import com.minhtetoo.proofofconcept.R;
 import com.minhtetoo.proofofconcept.adapters.PagerAdapter;
+import com.minhtetoo.proofofconcept.delegates.PopularMovieDelegate;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity implements PopularMovieDelegate {
 
     android.support.v7.widget.Toolbar toolBar;
 
