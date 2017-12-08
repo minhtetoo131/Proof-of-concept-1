@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
@@ -21,7 +22,7 @@ import java.util.List;
  * Created by min on 11/8/2017.
  */
 
-public class PopularMovieRecyclerAdapter extends BaseRecyclerAdapter<PopularMovieViewHolder,PopularMovieViewHolder> {
+public class PopularMovieRecyclerAdapter extends BaseRecyclerAdapter<PopularMovieViewHolder,PopularMovieVO> {
 
     Context mcontext;
     PopularMovieDelegate mDelegate;
@@ -50,10 +51,15 @@ public class PopularMovieRecyclerAdapter extends BaseRecyclerAdapter<PopularMovi
     @Override
     public void onBindViewHolder(PopularMovieViewHolder holder, int position) {
 
-        PopularMovieViewHolder currentViewHolder = holder;
-        TextView txt = (TextView) currentViewHolder.tvPopularity;
+        PopularMovieVO currentVo = mData.get(position);
+        TextView popularity = (TextView) holder.tvPopularity;
         Typeface font = Typeface.createFromAsset(mcontext.getAssets(), "font.ttf");
-        txt.setTypeface(font);
+        popularity.setTypeface(font);
+        popularity.setText(String.valueOf(currentVo.getVoteAverage()));
+
+
+        holder.movieTitle.setText(currentVo.getTitle());
+        holder.movieRating.setRating((float)(currentVo.getPopularity()/1000*6));
 
         YoYo.with(Techniques.Shake)
                 .duration(1000)
@@ -63,11 +69,13 @@ public class PopularMovieRecyclerAdapter extends BaseRecyclerAdapter<PopularMovi
 
     @Override
     public int getItemCount() {
-        return 100;
+        return mData.size();
     }
 
     public void appendPopularMovies(List<PopularMovieVO>
                                             loadedPopularMovies) {
+        mData.addAll(loadedPopularMovies);
+        notifyDataSetChanged();
 
     }
 

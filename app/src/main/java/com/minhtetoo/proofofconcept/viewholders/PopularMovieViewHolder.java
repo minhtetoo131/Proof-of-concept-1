@@ -2,6 +2,7 @@ package com.minhtetoo.proofofconcept.viewholders;
 
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.minhtetoo.proofofconcept.R;
@@ -16,7 +17,9 @@ public class PopularMovieViewHolder extends BaseViewHolder<PopularMovieVO> {
 
     PopularMovieDelegate mPopularmovieItemsDelegate;
     public View mItemView ;
-    public TextView tvPopularity;
+    public TextView tvPopularity ,movieTitle;
+
+    public RatingBar movieRating;
 
 
 
@@ -28,6 +31,9 @@ public class PopularMovieViewHolder extends BaseViewHolder<PopularMovieVO> {
 
         mItemView = itemView;
         tvPopularity = mItemView.findViewById(R.id.lbl_ibm_rating);
+
+        movieTitle = mItemView.findViewById(R.id.lbl_movie_name);
+        movieRating = mItemView.findViewById(R.id.ratingBar);
 
 
 
