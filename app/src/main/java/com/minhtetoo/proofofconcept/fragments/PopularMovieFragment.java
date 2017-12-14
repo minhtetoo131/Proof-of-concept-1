@@ -10,9 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.minhtetoo.proofofconcept.R;
 import com.minhtetoo.proofofconcept.adapters.PopularMovieRecyclerAdapter;
+import com.minhtetoo.proofofconcept.components.SmartScrollListener;
 import com.minhtetoo.proofofconcept.delegates.PopularMovieDelegate;
 import com.minhtetoo.proofofconcept.events.RestApiEvents;
 
@@ -21,7 +23,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 
-public class FragmentOne extends BaseFragment {
+public class PopularMovieFragment extends BaseFragment implements SmartScrollListener.OnSmartScrollListener {
     RecyclerView mrecyclerView ;
 
     View  v;
@@ -34,7 +36,7 @@ public class FragmentOne extends BaseFragment {
 
 
 
-    public FragmentOne() {
+    public PopularMovieFragment() {
         // Required empty public constructor
     }
 
@@ -79,40 +81,14 @@ public class FragmentOne extends BaseFragment {
 
         popularMovieRecyclerAdapter = new PopularMovieRecyclerAdapter(getContext(),popularMovieDelegate) ;
 
+        mrecyclerView.addOnScrollListener(new SmartScrollListener(this));
+
         mrecyclerView.setAdapter(popularMovieRecyclerAdapter);
 
 
-
-
-
-
         return v ;
-
-
-
-
-
-
     }
 
-//    @Override
-//    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-//
-//
-//        TextView tvRating = v.findViewById(R.id.lbl_ibm_rating);
-//
-//        Typeface font = Typeface.createFromAsset(getActivity().getAssets(),"Font.ttf");
-//
-//
-//        tvRating.setTypeface(font);
-//
-//        super.onViewCreated(view, savedInstanceState);
-//
-//
-//
-//
-//
-//    }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onPopularMovieLoaded(RestApiEvents.PopularMovieLoadedEvent event){
@@ -125,6 +101,11 @@ public class FragmentOne extends BaseFragment {
     @Subscribe (threadMode = ThreadMode.MAIN)
     public void onErrorInvokingAPI(RestApiEvents.ErrorInvokingAPIEvent event){
         Snackbar.make(mrecyclerView,event.getErrorMsg(),Snackbar.LENGTH_INDEFINITE).show();
+
+    }
+
+    @Override
+    public void onListEndReach() {
 
     }
 }

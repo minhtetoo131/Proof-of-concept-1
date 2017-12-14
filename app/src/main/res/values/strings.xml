@@ -6,4 +6,5 @@
     <string name="hello_two_fragment">Hello Two fragment</string>
     <string name="hello_three_fragment">Hello three fragment</string>
     <string name="movie_overview">Movie Overview</string>
+    <string name="msg_generic_no_data">no data to display</string>
 </resources>

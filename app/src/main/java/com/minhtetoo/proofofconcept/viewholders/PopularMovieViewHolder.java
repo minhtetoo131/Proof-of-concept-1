@@ -19,6 +19,8 @@ public class PopularMovieViewHolder extends BaseViewHolder<PopularMovieVO> {
     public View mItemView ;
     public TextView tvPopularity ,movieTitle;
 
+   public ImageView movieThumbnail;
+
     public RatingBar movieRating;
 
 
@@ -34,6 +36,8 @@ public class PopularMovieViewHolder extends BaseViewHolder<PopularMovieVO> {
 
         movieTitle = mItemView.findViewById(R.id.lbl_movie_name);
         movieRating = mItemView.findViewById(R.id.ratingBar);
+
+        movieThumbnail = mItemView.findViewById(R.id.iv_movie_thumb);
 
 
 

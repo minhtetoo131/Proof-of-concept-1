@@ -5,4 +5,6 @@ package com.minhtetoo.proofofconcept.delegates;
  */
 
 public interface PopularMovieDelegate {
+
+    void onTapMovieItemView();
 }

@@ -2,13 +2,13 @@ package com.minhtetoo.proofofconcept.adapters;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.minhtetoo.proofofconcept.R;
@@ -65,6 +65,13 @@ public class PopularMovieRecyclerAdapter extends BaseRecyclerAdapter<PopularMovi
                 .duration(1000)
 
                 .playOn(holder.mItemView);
+
+        Glide.with(mcontext).load("https://image.tmdb.org/t/p/original/"+currentVo.getPosterPath())
+                .thumbnail(0.5f)
+                .crossFade()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(holder.movieThumbnail);
+
     }
 
     @Override

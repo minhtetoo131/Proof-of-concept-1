@@ -4,9 +4,9 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.minhtetoo.proofofconcept.fragments.FragmentOne;
-import com.minhtetoo.proofofconcept.fragments.FragmentThree;
-import com.minhtetoo.proofofconcept.fragments.FragmentTwo;
+import com.minhtetoo.proofofconcept.fragments.PopularMovieFragment;
+import com.minhtetoo.proofofconcept.fragments.UpCominingFragment;
+import com.minhtetoo.proofofconcept.fragments.NowOnCinema;
 
 /**
  * Created by min on 11/8/2017.
@@ -27,13 +27,13 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
         switch(position){
             case 0:
-                fragment = new FragmentOne();
+                fragment = new PopularMovieFragment();
                 break;
             case 1:
-                fragment = new FragmentTwo();
+                fragment = new NowOnCinema();
                 break;
             case 2:
-                fragment = new FragmentThree();
+                fragment = new UpCominingFragment();
                 break;
 
         }
@@ -56,15 +56,15 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
 
         switch(position){
             case 0:
-                Title = "FragmentOne()";
+                Title = "PopularMovieFragment()";
                 break;
 
             case 1:
-                Title = "FragmentOne()";
+                Title = "PopularMovieFragment()";
                 break;
 
             case 2:
-                Title = "FragmentOne()";
+                Title = "PopularMovieFragment()";
                 break;
 
 

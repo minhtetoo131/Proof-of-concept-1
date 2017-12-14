@@ -76,4 +76,9 @@ public class MainActivity extends BaseActivity implements PopularMovieDelegate {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onTapMovieItemView() {
+
+    }
 }
