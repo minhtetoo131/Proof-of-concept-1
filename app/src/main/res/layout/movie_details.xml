@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/rl_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <RelativeLayout
+                android:id="@+id/rl_header"
+                android:layout_width="match_parent"
+                android:layout_height="310dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/the_shawshank_redumption_thumb_background"
+                    android:scaleType="centerCrop"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/overlay_view_color"/>
+
+
+                <RelativeLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <ImageView
+                        android:id="@+id/iv_movie_thumb"
+                        android:layout_width="150dp"
+                        android:layout_height="200dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignTop="@+id/lbl_ibm_rating"
+                        android:layout_marginStart="@dimen/margin_large"
+                        android:layout_marginTop="12dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/the_shawshank_redumption_thumb_background" />
+
+                    <TextView
+                        android:id="@+id/lbl_ibm_rating"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="@dimen/margin_xlarge"
+                        android:background="@drawable/ic_rating_background_24dp"
+                        android:fontFamily="casual"
+                        android:gravity="center"
+                        android:text="7.5"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_regular_3x" />
+
+                    <ImageView
+                        android:id="@+id/iv_mark_icon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/iv_movie_thumb"
+                        android:layout_marginBottom="@dimen/margin_medium_2"
+                        android:layout_toEndOf="@+id/ratingBar"
+                        android:src="@drawable/ic_center_focus_24dp" />
+
+                    <RatingBar
+                        android:id="@+id/ratingBar"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/iv_movie_thumb"
+                        android:layout_below="@+id/iv_movie_thumb"
+                        android:layout_marginTop="13dp"
+                        android:numStars="7"
+                        android:rating="5" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/ratingBar"
+                        android:layout_below="@+id/ratingBar"
+                        android:layout_marginTop="@dimen/margin_medium"
+                        android:text="Release :  January 1994"
+                        android:textColor="@color/white"/>
+
+                    <TextView
+                        android:id="@+id/tv_movie_quote"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/iv_movie_thumb"
+                        android:layout_marginTop="12dp"
+                        android:text="@string/movie_quote"
+                        android:layout_toRightOf="@+id/iv_movie_thumb"
+                        android:textSize="@dimen/text_regular_3x"
+                        android:layout_marginLeft="@dimen/margin_medium"
+                        android:textColor="@color/white"/>
+
+                    <ScrollView
+                        android:id="@+id/sv_detail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/tv_movie_quote"
+                        android:layout_below="@+id/tv_movie_quote"
+                        android:layout_marginTop="@dimen/margin_medium_2">
+
+                        <TextView
+                            android:id="@+id/tv_movie_short_story"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/movie_brief"
+                            android:textColor="@color/white"/>
+
+                    </ScrollView>
+
+
+
+
+
+
+                </RelativeLayout>
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_movie_title"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:layout_below="@id/rl_header"
+                android:text="@string/movie_title"
+                android:background="#D8C8A0"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_regular_3x"
+                />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_movie_title"
+                android:background="#481818">
+
+
+                <TextView
+                    android:id="@+id/tv_movie_category_one"
+                    android:layout_width="60dp"
+                    android:layout_height="20dp"
+                    android:text="Drama"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:background="@drawable/tv_movie_category_background"
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/margin_medium_2"
+                    />
+
+                <View
+                    android:id="@+id/view_between_two_tv"
+                    android:layout_width="1dp"
+                    android:layout_height="15dp"
+                    android:background="#FFF"
+                    android:layout_toRightOf="@+id/tv_movie_category_one"
+                    android:layout_marginTop="@dimen/margin_medium_view"
+                    android:layout_marginLeft="@dimen/margin_small"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_movie_category_two"
+                    android:layout_width="60dp"
+                    android:layout_height="20dp"
+                    android:text="Crime"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:layout_toRightOf="@+id/view_between_two_tv"
+                    android:background="@drawable/tv_movie_category_background"
+                    android:gravity="center"
+                    android:layout_marginLeft="@dimen/margin_small"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_movie_length"
+                    android:layout_width="100dp"
+                    android:layout_height="35dp"
+                    android:text="2hrs 23mins"
+                    android:layout_below="@+id/tv_movie_category_one"
+                    android:layout_alignLeft="@+id/tv_movie_category_one"
+                    android:background="@drawable/bg_round_accent_button"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="@dimen/margin_medium"/>
+
+                <RelativeLayout
+                    android:id="@+id/rl_recycler_empty_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_movie_length"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    >
+
+
+
+                    <com.minhtetoo.proofofconcept.components.SmartRecyclerView
+                        android:id="@+id/rv_movie_trailers"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+
+
+
+                    </com.minhtetoo.proofofconcept.components.SmartRecyclerView>
+
+                    <include
+                        android:id="@+id/custom_view_empty"
+                        layout="@layout/view_pod_empty"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:visibility="invisible"
+                        />
+
+
+
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/lbl_reviews"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/lbl_review_txt"
+                    android:layout_below="@+id/rl_recycler_empty_view"
+                    android:layout_marginTop="@dimen/margin_medium"
+                    android:textSize="@dimen/text_regular_2x"
+                    android:textColor="@color/white"
+                    android:layout_marginLeft="@dimen/margin_medium_2"/>
+
+                <TextView
+                    android:id="@+id/lbl_comment_user_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="minhtetoo wrote :"
+                    android:layout_below="@+id/lbl_reviews"
+                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:textColor="@color/white"
+                    android:textStyle="italic"
+                    android:layout_alignLeft="@+id/lbl_reviews"/>
+
+                <TextView
+                    android:id="@+id/comment_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Very Good Movie"
+                    android:layout_alignLeft="@+id/lbl_reviews"
+                    android:layout_below="@+id/lbl_comment_user_one"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:id="@+id/lbl_comment_user_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="John Chard wrote :"
+                    android:layout_below="@+id/comment_one"
+                    android:layout_marginTop="@dimen/margin_medium_2"
+                    android:textColor="@color/white"
+                    android:textStyle="italic"
+                    android:layout_alignLeft="@+id/lbl_reviews"/>
+
+                <TextView
+                    android:id="@+id/comment_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Very Good Movie"
+                    android:layout_alignLeft="@+id/lbl_reviews"
+                    android:layout_below="@+id/lbl_comment_user_two"
+                    android:textColor="@color/white"/>
+
+                <TextView
+                    android:id="@+id/tv_movie_story_details"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/movie_story"
+                    android:layout_alignLeft="@+id/lbl_reviews"
+                    android:layout_below="@+id/comment_two"
+                    android:textColor="@color/white"
+                    android:layout_marginTop="@dimen/margin_medium_2"
+                    />
+
+
+
+
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/lbl_ibm_rating"
+        android:src="@drawable/ic_search_24dp"
+        app:layout_anchor="@id/rl_header"
+        app:layout_anchorGravity="right|bottom"
+        android:layout_margin="@dimen/margin_medium_2"/>
+
+
+</android.support.design.widget.CoordinatorLayout>

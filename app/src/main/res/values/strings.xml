@@ -7,4 +7,47 @@
     <string name="hello_three_fragment">Hello three fragment</string>
     <string name="movie_overview">Movie Overview</string>
     <string name="msg_generic_no_data">no data to display</string>
+    <string name="lbl_review_txt"><u>Reviews</u></string>
+
+
+    <string name="movie_story">Andy Dufresne, the young, successful vice president of a major bank, finds his life taking a serious detour after his wife and her lover are murdered and the crime gets pinned on him.
+
+Maybe because he was outside the lovers house with a loaded gun the night of the murder.
+
+Yeah, not looking good for him.
+
+Anyway, hes sent to Shawshank Prison, where hes befriended by some total sweethearts, including a convicted murderer named Red who eventually becomes his best bud. Reds a guy who "knows how to get things," and Andy asks him to get him a rock hammer to collect rocks—hes always been an amateur geology fan. Reds glad to oblige. Andys also befriended by some guys who are...well, lets just say they dont want to examine rocks with him.
+
+Nobody said prison was easy.
+
+With his considerable accounting skills, Andy begins helping Warden Norton and the guards with their taxes and other financial issues, and hes suddenly vaulted into the position of teachers pet. He gets shown so much favoritism that the guards end up having his back, even going so far as to, uh, take care of another inmate who doesnt seem able to take "no" for an answer.
+
+Matters become complicated when Norton has Andy assist him with some shady dealings, involving Andy having to launder the wardens money so that nothing gets traced back to either of them. A financial wizard who knows all the loopholes, Andy launders everything through a Mr. Randall Stevens: a completely fictional human being who even has his own social security card and birth certificate.
+
+As Andy tells Red, he was clean as a whistle on the outside; it took being sent to prison to turn him into a crook.
+
+There's a glimmer of hope for Andy when Tommy, a new inmate, arrives at the prison, and it turns out he has information that could exonerate his new friend. The warden learns about it, and is none too keen to release into society someone with so much dirt on him. He has Tommy murdered, throws Andy into solitary for two months, and only releases him once he agrees to keep doing his dirty work.
+
+There's a time to shut up and a time to put up, and apparently, this was an awfully good time to shut up.
+
+After 20 years at Shawshank, Andy doesn't seem like himself. His buddies are worried, and he asks one of them for a length of rope. He seems to be telling Red...goodbye. One morning, he doesn't make it out of his cell for roll call. Red fears the worst, but astonishingly, he isn't in there at all.
+
+We've got an escape on our hands.
+
+The warden learns the shocking truth: for almost two decades, Andy has been chiseling away at the wall with a rock hammer and hiding his handiwork behind a series of pinup posters procured by Red, finally making his escape through the sewer pipes the night before.
+
+Clever boy.
+
+Norton "releases the hounds," but Andy's long gone—and was probably too covered in sewage to leave much of a scent anyway.
+
+Having cleared out the funds set up under Randall Stevens, Andy absconds with over $300,000 of the warden's money, forwards the cooked account books to the local newspaper, and makes a bee line for Mexico. The police come for the warden, who takes the coward's way out with a bullet to the brain.</string>
+
+
+    <string name="movie_brief">After the murder of his wife, hotshot banker Andrew Dufresne is sent to Shawshank Prison, where the usual unpleasantness occurs. Over the years, he retains hope and eventually gains the respect of his fellow inmates, especially longtime convict \"Red\" Redding,
+        a black marketeer, and becomes influential within the prison.
+        Eventually, Andrew achieves his ends on his own terms.the respect
+        of his fellow inmates, especially longtime convict \"Red\" Redding,
+        a black marketeer, and becomes influential within the prison. Eventually</string>
+    <string name="movie_quote">Fear can hold you prisoner. Hope can set you free.</string>
+    <string name="movie_title">The Shawshamks Redumption</string>
 </resources>

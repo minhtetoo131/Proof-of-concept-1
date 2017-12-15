@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.minhtetoo.proofofconcept.R;
 import com.minhtetoo.proofofconcept.adapters.PopularMovieRecyclerAdapter;
 import com.minhtetoo.proofofconcept.components.SmartScrollListener;
+import com.minhtetoo.proofofconcept.data.model.PopularMovieModel;
 import com.minhtetoo.proofofconcept.delegates.PopularMovieDelegate;
 import com.minhtetoo.proofofconcept.events.RestApiEvents;
 
@@ -106,6 +107,6 @@ public class PopularMovieFragment extends BaseFragment implements SmartScrollLis
 
     @Override
     public void onListEndReach() {
-
+        PopularMovieModel.getObjInstance().startloadingPopularMovie();
     }
 }

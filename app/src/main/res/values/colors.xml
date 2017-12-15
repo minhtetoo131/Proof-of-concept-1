@@ -10,4 +10,5 @@
 
     <color name="gold">#FFDF00</color>
     <color name="normal">#FFFFFF</color>
+    <color name="overlay_view_color">#6000</color>
 </resources>
