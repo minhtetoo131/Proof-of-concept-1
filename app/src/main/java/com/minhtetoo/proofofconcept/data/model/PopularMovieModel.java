@@ -1,8 +1,13 @@
 package com.minhtetoo.proofofconcept.data.model;
 
-import com.minhtetoo.proofofconcept.data.VO.PopularMovieVO;
+import android.content.ContentValues;
+import android.content.Context;
+import android.util.Log;
+
+import com.minhtetoo.proofofconcept.data.vo.PopularMovieVO;
 import com.minhtetoo.proofofconcept.events.RestApiEvents;
 import com.minhtetoo.proofofconcept.network.PopularMovieDataAgentImpl;
+import com.minhtetoo.proofofconcept.persistence.MovieContract;
 import com.minhtetoo.proofofconcept.utils.AppConstants;
 
 import org.greenrobot.eventbus.EventBus;
@@ -38,17 +43,48 @@ public class PopularMovieModel {
         return objInstance;
     }
 
+    public void startloadingPopularMovie(Context context){
+        PopularMovieDataAgentImpl.getObjInstance().loadPopularMovies(AppConstants.ACESS_TOKEN,
+                mPopularMoviePageIndex,context);
+
+    }
+
+    public List<PopularMovieVO> getPopularMovies(){
+
+        return PopularMovies;
+    }
+
+    public void loadMoreMOvies(Context context) {
+       PopularMovieDataAgentImpl.getObjInstance().loadPopularMovies(AppConstants.ACESS_TOKEN,
+               mPopularMoviePageIndex,context);
+
+    }
+
     @Subscribe
     public void onPopularMovieLoaded(RestApiEvents.PopularMovieLoadedEvent event){
         PopularMovies.addAll(event.getLoadedPopularMovies());
         mPopularMoviePageIndex = event.getLoadedPageIndex() + 1;
 
+        //logic to store in persistence layer;
+        ContentValues[] newsCVs = new ContentValues[event.getLoadedPopularMovies().size()] ;
+
+        for(int index = 0 ;index < newsCVs.length ; index++){
+            newsCVs[index] = event.getLoadedPopularMovies().get(index).parseToContentValue();
+        }
+
+        int insertedRow = event.getContext().getContentResolver().bulkInsert(MovieContract.PopularMovieEntry.CONTENT_URI,newsCVs);
+
+
+        Log.d("Inserted Row ", insertedRow + "");
     }
 
-    public void startloadingPopularMovie(){
-        PopularMovieDataAgentImpl.getObjInstance().loadPopularMovies(AppConstants.ACESS_TOKEN,
-                mPopularMoviePageIndex);
+    public void forceRefreshNews(Context context) {
+        PopularMovies = new ArrayList<>();
 
+        mPopularMoviePageIndex = 1;
+        startloadingPopularMovie(context);
     }
+
+
 
 }

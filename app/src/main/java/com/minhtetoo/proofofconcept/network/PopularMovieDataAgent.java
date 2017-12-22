@@ -1,5 +1,7 @@
 package com.minhtetoo.proofofconcept.network;
 
+import android.content.Context;
+
 /**
  * Created by min on 12/7/2017.
  */
@@ -7,7 +9,7 @@ package com.minhtetoo.proofofconcept.network;
 
 public interface PopularMovieDataAgent {
 
-    void loadPopularMovies(String acessToken, int pageNo);
+    void loadPopularMovies(String acessToken, int pageNo,Context context);
 
 
 }

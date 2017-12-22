@@ -12,7 +12,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.minhtetoo.proofofconcept.R;
-import com.minhtetoo.proofofconcept.data.VO.PopularMovieVO;
+import com.minhtetoo.proofofconcept.data.vo.PopularMovieVO;
 import com.minhtetoo.proofofconcept.delegates.PopularMovieDelegate;
 import com.minhtetoo.proofofconcept.viewholders.PopularMovieViewHolder;
 

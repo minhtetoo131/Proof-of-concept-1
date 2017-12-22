@@ -1,7 +1,7 @@
 package com.minhtetoo.proofofconcept.network.response;
 
 import com.google.gson.annotations.SerializedName;
-import com.minhtetoo.proofofconcept.data.VO.PopularMovieVO;
+import com.minhtetoo.proofofconcept.data.vo.PopularMovieVO;
 
 import java.util.ArrayList;
 import java.util.List;

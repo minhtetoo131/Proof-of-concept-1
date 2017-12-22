@@ -6,7 +6,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.minhtetoo.proofofconcept.R;
-import com.minhtetoo.proofofconcept.data.VO.PopularMovieVO;
+import com.minhtetoo.proofofconcept.data.vo.PopularMovieVO;
 import com.minhtetoo.proofofconcept.delegates.PopularMovieDelegate;
 
 /**

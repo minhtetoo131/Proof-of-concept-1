@@ -44,6 +44,8 @@ public class MovieTrailerRecyclerAdapter extends RecyclerView.Adapter<MovieTrail
         return 10;
     }
 
+
+
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
 

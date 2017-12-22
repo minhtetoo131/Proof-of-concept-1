@@ -1,4 +1,4 @@
-package com.minhtetoo.proofofconcept.data.persistence;
+package com.minhtetoo.proofofconcept.persistence;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,13 +10,13 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class PopularMovieDBHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "popularmovie.db";
 
 
     private static final String SQL_CREATE_POPULAR_MOVIE_TABLE = "CREATE TABLE " + MovieContract.PopularMovieEntry.TABLE_NAME + " (" +
             MovieContract.PopularMovieEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            MovieContract.PopularMovieEntry.COLUMN_VOTE_COUNT + " INT, " +
+            MovieContract.PopularMovieEntry.COLUMN_VOTE_COUNT + " INTEGER, " +
             MovieContract.PopularMovieEntry.COLUMN_ID + " INTEGER, " +
             MovieContract.PopularMovieEntry.COLUMN_VIDEO + " BOOLEAN, " +
             MovieContract.PopularMovieEntry.COLUMN_VOTE_AVETAGE + " DOUBLE, " +
@@ -30,17 +30,25 @@ public class PopularMovieDBHelper extends SQLiteOpenHelper {
             MovieContract.PopularMovieEntry.COLUMN_OVER_VIEW + " TEXT, " +
             MovieContract.PopularMovieEntry.COLUMN_RELEASE_DATE + " TEXT, " +
 
-            " UNIQUE (" + MovieContract.PopularMovieEntry.COLUMN_TITLE + ") ON CONFLICT IGNORE" +
+            " UNIQUE (" + MovieContract.PopularMovieEntry.COLUMN_TITLE + ") ON CONFLICT REPLACE" +
             " );";
 
-    private static final String SQL_CREATE_POPULAR_MOVIE_GENRE_ID_TABLE = "CREATE TABLE " + MovieContract.GenreIdEntry.TABLE_NAME + " (" +
-            MovieContract.GenreIdEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            MovieContract.GenreIdEntry.COLUMN_POPULAR_MOVIE_TITLE + " TEXT, " +
-            MovieContract.GenreIdEntry.COLUMN_GENRE_ID + " INTEGER, " +
+    private static final String SQL_CREATE_POPULAR_MOVIE_GENRE_ID_TABLE = "CREATE TABLE " + MovieContract.GenreEntry.TABLE_NAME + " (" +
+            MovieContract.GenreEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            MovieContract.GenreEntry.COLUMN_GENRE_ID + " INTEGER, " +
 
-            " UNIQUE (" + MovieContract.GenreIdEntry.COLUMN_POPULAR_MOVIE_TITLE + ", " +
-            MovieContract.GenreIdEntry.COLUMN_GENRE_ID + ") ON CONFLICT IGNORE" +
+
+            " UNIQUE ("  +
+            MovieContract.GenreEntry.COLUMN_GENRE_ID + ") ON CONFLICT REPLACE" +
             " );";
+
+    private static final String SQL_CREATE_GENRE_IN_MOVIE_TABLE = "CREATE TABLE " + MovieContract.GenreInMovieEntry.TABLE_NAME + " (" +
+            MovieContract.GenreInMovieEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            MovieContract.GenreInMovieEntry.COLUMN_GENRE_ID + " INTEGER, " +
+            MovieContract.GenreInMovieEntry.COLUMN_MOVIE_ID + " INTEGER"  +
+
+            " );";
+
 
 
     public PopularMovieDBHelper(Context context) {
@@ -54,6 +62,7 @@ public class PopularMovieDBHelper extends SQLiteOpenHelper {
 
         db.execSQL(SQL_CREATE_POPULAR_MOVIE_TABLE);
         db.execSQL(SQL_CREATE_POPULAR_MOVIE_GENRE_ID_TABLE);
+        db.execSQL(SQL_CREATE_GENRE_IN_MOVIE_TABLE);
 
     }
 
@@ -61,7 +70,8 @@ public class PopularMovieDBHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
         db.execSQL("DROP TABLE IF EXISTS " + MovieContract.PopularMovieEntry.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + MovieContract.GenreIdEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + MovieContract.GenreEntry.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + MovieContract.GenreInMovieEntry.TABLE_NAME);
 
 
         onCreate(db);

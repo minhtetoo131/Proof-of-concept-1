@@ -16,6 +16,6 @@ public class ProofOfConcept extends Application {
     public void onCreate() {
         super.onCreate();
 
-      PopularMovieModel.getObjInstance().startloadingPopularMovie();
+      PopularMovieModel.getObjInstance().startloadingPopularMovie(getApplicationContext());
     }
 }

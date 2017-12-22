@@ -1,5 +1,7 @@
 package com.minhtetoo.proofofconcept.network;
 
+import android.content.Context;
+
 import com.minhtetoo.proofofconcept.events.RestApiEvents;
 import com.minhtetoo.proofofconcept.network.response.GetPopularMovieResponse;
 
@@ -53,7 +55,7 @@ public class PopularMovieDataAgentImpl implements PopularMovieDataAgent {
 
 
     @Override
-    public void loadPopularMovies(String acessToken, int pageNo) {
+    public void loadPopularMovies(String acessToken, int pageNo, final Context context) {
 
         Call<GetPopularMovieResponse> loadMMNewsCall= theAPI.loadPopularMovie(pageNo,acessToken);
 
@@ -67,7 +69,7 @@ public class PopularMovieDataAgentImpl implements PopularMovieDataAgent {
                 if(GetPopularMovieResponse !=null && GetPopularMovieResponse.getPopularMovies().size()> 0){
                     RestApiEvents.PopularMovieLoadedEvent PopularMovieLoadedEvent = new
                             RestApiEvents.PopularMovieLoadedEvent(GetPopularMovieResponse.getPage(),
-                            GetPopularMovieResponse.getPopularMovies());
+                            GetPopularMovieResponse.getPopularMovies(),context);
 
                     EventBus.getDefault().post(PopularMovieLoadedEvent);
 

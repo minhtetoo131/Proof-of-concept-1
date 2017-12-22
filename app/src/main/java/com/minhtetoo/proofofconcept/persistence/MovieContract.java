@@ -1,4 +1,4 @@
-package com.minhtetoo.proofofconcept.data.persistence;
+package com.minhtetoo.proofofconcept.persistence;
 
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -16,7 +16,8 @@ public class MovieContract {
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
 
     public static final String PATH_POPULAR_MOVIES = "popular_movies";
-    public static final String PATH_GENRE_ID = "popular_movie_genre_ids";
+    public static final String PATH_GENRES = "popular_movie_genre_ids";
+    public static final String PATH_GENRE_IN_MOVIE = "genre_in_movies";
 
     public static final class PopularMovieEntry implements BaseColumns {
         public static final Uri CONTENT_URI =
@@ -47,43 +48,65 @@ public class MovieContract {
         public static Uri buildPopularMovieUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
-
-
-
-
     }
 
-    public static final class GenreIdEntry implements BaseColumns {
+    public static final class GenreEntry implements BaseColumns {
         public static final Uri CONTENT_URI =
-                BASE_CONTENT_URI.buildUpon().appendPath(PATH_GENRE_ID).build();
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_GENRES).build();
 
         public static final String DIR_TYPE =
-                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_GENRE_ID;
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_GENRES;
 
         public static final String ITEM_TYPE =
-                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_GENRE_ID;
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_GENRES;
 
         public static final String TABLE_NAME = "popular_movie_genre_ids";
 
-        public static final String COLUMN_POPULAR_MOVIE_TITLE = "popular_movie_title";
         public static final String COLUMN_GENRE_ID = "genre_id";
 
         public static Uri buildPopularMovieGenreIdUri(long id) {
             return ContentUris.withAppendedId(CONTENT_URI, id);
         }
 
-        public static Uri buildMovieGenreIdWithTitle(String popularMovieTitle) {
+    }
+
+    public static final class GenreInMovieEntry implements BaseColumns {
+        public static final Uri CONTENT_URI =
+                BASE_CONTENT_URI.buildUpon().appendPath(PATH_GENRE_IN_MOVIE).build();
+
+        public static final String DIR_TYPE =
+                ContentResolver.CURSOR_DIR_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_GENRE_IN_MOVIE;
+
+        public static final String ITEM_TYPE =
+                ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_GENRE_IN_MOVIE;
+
+        public static final String TABLE_NAME = PATH_GENRE_IN_MOVIE;
+
+        public static final String COLUMN_GENRE_ID = "genre_id";
+        public static final String COLUMN_MOVIE_ID = "movie_id";
+
+        public static Uri buildPopularMovieGenreIdUri(long id) {
+            return ContentUris.withAppendedId(CONTENT_URI, id);
+        }
+
+        public static Uri buildMovieUriWithGenre(String genreId) {
             return CONTENT_URI.buildUpon()
-                    .appendQueryParameter(COLUMN_POPULAR_MOVIE_TITLE, popularMovieTitle)
+                    .appendQueryParameter(COLUMN_GENRE_ID, genreId)
                     .build();
         }
 
-        public static String getMovieTitleFromParam(Uri uri) {
-            return uri.getQueryParameter(COLUMN_POPULAR_MOVIE_TITLE);
+        public static String getGenreFromParam(Uri uri) {
+            return uri.getQueryParameter(COLUMN_GENRE_ID);
+        }
+        public static Uri buildGenreUriWithMovieId(String movieId) {
+            return CONTENT_URI.buildUpon()
+                    .appendQueryParameter(COLUMN_MOVIE_ID, movieId)
+                    .build();
         }
 
-
-
+        public static String getMovieIdFromParam(Uri uri) {
+            return uri.getQueryParameter(COLUMN_MOVIE_ID);
+        }
 
 
 

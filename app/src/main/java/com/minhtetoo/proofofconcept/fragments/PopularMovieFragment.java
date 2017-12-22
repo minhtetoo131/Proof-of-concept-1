@@ -2,8 +2,12 @@ package com.minhtetoo.proofofconcept.fragments;
 
 
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.CursorLoader;
+import android.support.v4.content.Loader;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,15 +20,22 @@ import com.minhtetoo.proofofconcept.R;
 import com.minhtetoo.proofofconcept.adapters.PopularMovieRecyclerAdapter;
 import com.minhtetoo.proofofconcept.components.SmartScrollListener;
 import com.minhtetoo.proofofconcept.data.model.PopularMovieModel;
+import com.minhtetoo.proofofconcept.data.vo.PopularMovieVO;
 import com.minhtetoo.proofofconcept.delegates.PopularMovieDelegate;
 import com.minhtetoo.proofofconcept.events.RestApiEvents;
+import com.minhtetoo.proofofconcept.persistence.MovieContract;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import android.support.v4.app.LoaderManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
-public class PopularMovieFragment extends BaseFragment implements SmartScrollListener.OnSmartScrollListener {
+public class PopularMovieFragment extends BaseFragment implements SmartScrollListener.OnSmartScrollListener, LoaderManager.LoaderCallbacks<Cursor> {
+    private static final int MOVIE_LIST_LOADER_ID = 1001;
     RecyclerView mrecyclerView ;
 
     View  v;
@@ -50,13 +61,6 @@ public class PopularMovieFragment extends BaseFragment implements SmartScrollLis
         EventBus.getDefault().register(this);
     }
 
-    @Override
-    public void onStop() {
-
-        EventBus.getDefault().unregister(this);
-
-        super.onStop();
-    }
 
     @Override
     public void onAttach(Context context) {
@@ -90,11 +94,28 @@ public class PopularMovieFragment extends BaseFragment implements SmartScrollLis
         return v ;
     }
 
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        getLoaderManager().initLoader(MOVIE_LIST_LOADER_ID,null,this);
+
+    }
+
+    @Override
+    public void onStop() {
+
+        EventBus.getDefault().unregister(this);
+
+        super.onStop();
+    }
+
+
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onPopularMovieLoaded(RestApiEvents.PopularMovieLoadedEvent event){
 
-        popularMovieRecyclerAdapter.appendPopularMovies(event.getLoadedPopularMovies());
+//        popularMovieRecyclerAdapter.appendPopularMovies(event.getLoadedPopularMovies());
 
     }
 
@@ -107,6 +128,41 @@ public class PopularMovieFragment extends BaseFragment implements SmartScrollLis
 
     @Override
     public void onListEndReach() {
-        PopularMovieModel.getObjInstance().startloadingPopularMovie();
+        PopularMovieModel.getObjInstance().startloadingPopularMovie(getContext());
+    }
+
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        return new CursorLoader(getContext(),
+                MovieContract.PopularMovieEntry.CONTENT_URI,
+                null,
+                null,
+                null,
+                null
+        );
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        if (data != null &&  data.moveToFirst()){
+
+            List<PopularMovieVO> newsVoList = new ArrayList<>();
+
+            do{
+                PopularMovieVO newsVO = PopularMovieVO.parseFromCursor(data);
+                newsVoList.add(newsVO);
+
+            }while(data.moveToNext());
+
+            popularMovieRecyclerAdapter.setNewData(newsVoList);
+
+        }
+
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+
     }
 }
