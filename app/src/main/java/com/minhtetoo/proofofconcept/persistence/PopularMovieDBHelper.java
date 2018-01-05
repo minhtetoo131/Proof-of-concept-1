@@ -17,7 +17,7 @@ public class PopularMovieDBHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_POPULAR_MOVIE_TABLE = "CREATE TABLE " + MovieContract.PopularMovieEntry.TABLE_NAME + " (" +
             MovieContract.PopularMovieEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             MovieContract.PopularMovieEntry.COLUMN_VOTE_COUNT + " INTEGER, " +
-            MovieContract.PopularMovieEntry.COLUMN_ID + " INTEGER, " +
+            MovieContract.PopularMovieEntry.COLUMN_MOVIE_ID + " INTEGER, " +
             MovieContract.PopularMovieEntry.COLUMN_VIDEO + " BOOLEAN, " +
             MovieContract.PopularMovieEntry.COLUMN_VOTE_AVETAGE + " DOUBLE, " +
             MovieContract.PopularMovieEntry.COLUMN_TITLE + " TEXT, " +

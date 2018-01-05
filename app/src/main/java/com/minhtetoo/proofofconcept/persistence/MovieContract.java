@@ -29,10 +29,10 @@ public class MovieContract {
         public static final String ITEM_TYPE =
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_POPULAR_MOVIES;
 
-        public static final String TABLE_NAME = "popular_movies";
+        public static final String TABLE_NAME = PATH_POPULAR_MOVIES;
 
         public static final String COLUMN_VOTE_COUNT = "voteCount";
-        public static final String COLUMN_ID = "id";
+        public static final String COLUMN_MOVIE_ID = "id";
         public static final String COLUMN_VIDEO = "video";
         public static final String COLUMN_VOTE_AVETAGE = "voteAverage";
         public static final String COLUMN_TITLE = "title";
@@ -60,7 +60,7 @@ public class MovieContract {
         public static final String ITEM_TYPE =
                 ContentResolver.CURSOR_ITEM_BASE_TYPE + "/" + CONTENT_AUTHORITY + "/" + PATH_GENRES;
 
-        public static final String TABLE_NAME = "popular_movie_genre_ids";
+        public static final String TABLE_NAME = PATH_GENRES;
 
         public static final String COLUMN_GENRE_ID = "genre_id";
 

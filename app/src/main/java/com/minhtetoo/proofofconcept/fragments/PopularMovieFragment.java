@@ -98,7 +98,7 @@ public class PopularMovieFragment extends BaseFragment implements SmartScrollLis
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        getLoaderManager().initLoader(MOVIE_LIST_LOADER_ID,null,this);
+        getActivity().getSupportLoaderManager().initLoader(MOVIE_LIST_LOADER_ID,null,this);
 
     }
 
@@ -147,15 +147,15 @@ public class PopularMovieFragment extends BaseFragment implements SmartScrollLis
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
         if (data != null &&  data.moveToFirst()){
 
-            List<PopularMovieVO> newsVoList = new ArrayList<>();
+            List<PopularMovieVO> popularMovieVoList = new ArrayList<>();
 
             do{
-                PopularMovieVO newsVO = PopularMovieVO.parseFromCursor(data);
-                newsVoList.add(newsVO);
+                PopularMovieVO popularMovieVO = PopularMovieVO.parseFromCursor(getContext(),data);
+                popularMovieVoList.add(popularMovieVO);
 
             }while(data.moveToNext());
 
-            popularMovieRecyclerAdapter.setNewData(newsVoList);
+            popularMovieRecyclerAdapter.setNewData(popularMovieVoList);
 
         }
 

@@ -41,10 +41,6 @@ public class PopularMovieRecyclerAdapter extends BaseRecyclerAdapter<PopularMovi
         View v = inflater.inflate(R.layout.item_views,parent,false);
 
         PopularMovieViewHolder holder = new PopularMovieViewHolder(v,mDelegate);
-
-
-
-
         return holder;
     }
 

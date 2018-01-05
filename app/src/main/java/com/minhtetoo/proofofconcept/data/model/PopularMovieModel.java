@@ -3,6 +3,7 @@ package com.minhtetoo.proofofconcept.data.model;
 import android.content.ContentValues;
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.minhtetoo.proofofconcept.data.vo.PopularMovieVO;
 import com.minhtetoo.proofofconcept.events.RestApiEvents;
@@ -66,16 +67,37 @@ public class PopularMovieModel {
         mPopularMoviePageIndex = event.getLoadedPageIndex() + 1;
 
         //logic to store in persistence layer;
-        ContentValues[] newsCVs = new ContentValues[event.getLoadedPopularMovies().size()] ;
+        ContentValues[] popularMovieCVs = new ContentValues[event.getLoadedPopularMovies().size()] ;
+        List<ContentValues> genreIdCVs = new ArrayList<>();
+        List<ContentValues> genreInMovieCVs = new ArrayList<>();
 
-        for(int index = 0 ;index < newsCVs.length ; index++){
-            newsCVs[index] = event.getLoadedPopularMovies().get(index).parseToContentValue();
+        for(int index = 0 ;index < popularMovieCVs.length ; index++){
+            PopularMovieVO currentMovieVO = event.getLoadedPopularMovies().get(index);
+            popularMovieCVs[index] = currentMovieVO.parseToContentValue();
+
+            for (Integer genreId : currentMovieVO.getGenreIds()){
+                ContentValues genreCV = new ContentValues();
+                genreCV.put(MovieContract.GenreEntry.COLUMN_GENRE_ID,genreId);
+                genreIdCVs.add(genreCV);
+
+                ContentValues genreInMovie = new ContentValues();
+                genreInMovie.put(MovieContract.GenreInMovieEntry.COLUMN_GENRE_ID,genreId);
+                genreInMovie.put(MovieContract.GenreInMovieEntry.COLUMN_MOVIE_ID,currentMovieVO.getId());
+                genreInMovieCVs.add(genreInMovie);
+            }
         }
 
-        int insertedRow = event.getContext().getContentResolver().bulkInsert(MovieContract.PopularMovieEntry.CONTENT_URI,newsCVs);
+        int insertedMovieRow = event.getContext().getContentResolver().bulkInsert(MovieContract.PopularMovieEntry.CONTENT_URI,popularMovieCVs);
+        Log.d("Inserted Row ", insertedMovieRow + "");
+
+        int insertedGenreRow = event.getContext().getContentResolver().bulkInsert(MovieContract.GenreEntry.CONTENT_URI,genreIdCVs.toArray(new ContentValues[0]));
+        Log.d("Inserted Row ", insertedGenreRow + "");
+
+        int insertedGenreInMovieRow = event.getContext().getContentResolver().bulkInsert(MovieContract.GenreInMovieEntry.CONTENT_URI,genreInMovieCVs.toArray(new ContentValues[0]));
+        Log.d("Inserted Row ", insertedGenreInMovieRow + "");
 
 
-        Log.d("Inserted Row ", insertedRow + "");
+
     }
 
     public void forceRefreshNews(Context context) {
