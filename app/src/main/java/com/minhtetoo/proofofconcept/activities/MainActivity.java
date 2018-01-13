@@ -12,11 +12,17 @@ import android.view.MenuItem;
 import android.widget.TableLayout;
 import android.widget.Toast;
 
+import com.minhtetoo.proofofconcept.ProofOfConcept;
 import com.minhtetoo.proofofconcept.R;
 import com.minhtetoo.proofofconcept.adapters.PagerAdapter;
+import com.minhtetoo.proofofconcept.dagger.AppComponent;
 import com.minhtetoo.proofofconcept.delegates.PopularMovieDelegate;
+import com.minhtetoo.proofofconcept.mvp.presenters.MainPresenter;
+import com.minhtetoo.proofofconcept.mvp.views.MainView;
 
-public class MainActivity extends BaseActivity implements PopularMovieDelegate {
+import javax.inject.Inject;
+
+public class MainActivity extends BaseActivity implements MainView,PopularMovieDelegate {
 
     android.support.v7.widget.Toolbar toolBar;
 
@@ -24,12 +30,19 @@ public class MainActivity extends BaseActivity implements PopularMovieDelegate {
 
     ViewPager mViewPager;
 
-    TableLayout mtabLayout;
+    @Inject
+    public MainPresenter mPresenter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ProofOfConcept proofOfConcept = (ProofOfConcept)getApplicationContext();
+        AppComponent appComponent = proofOfConcept.getAppComponent();
+        appComponent.inject(this);
+        mPresenter.onCreate(this);
 
         toolBar=findViewById(R.id.toolbar);
         setSupportActionBar(toolBar);
@@ -54,12 +67,41 @@ public class MainActivity extends BaseActivity implements PopularMovieDelegate {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
-                menuItem.setChecked(true);
-                mDrawerLayout.closeDrawers();
+                mPresenter.onNavigationItemSelected(menuItem);
                 Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
                 return true;
             }
         });
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mPresenter.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mPresenter.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mPresenter.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mPresenter.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mPresenter.onDestroy();
     }
 
     @Override
@@ -75,6 +117,13 @@ public class MainActivity extends BaseActivity implements PopularMovieDelegate {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+
+    @Override
+    public void closeDrawer() {
+        mDrawerLayout.closeDrawers();
     }
 
     @Override

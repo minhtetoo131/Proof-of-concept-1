@@ -22,11 +22,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PopularMovieDataAgentImpl implements PopularMovieDataAgent {
 
-    private static PopularMovieDataAgentImpl objInstance;
+
 
     PopularMovieAPI theAPI;
 
-    private PopularMovieDataAgentImpl() {
+    public PopularMovieDataAgentImpl() {
 
         OkHttpClient okHttpClient= new OkHttpClient.Builder()
                 .connectTimeout(60, TimeUnit.SECONDS)
@@ -42,16 +42,7 @@ public class PopularMovieDataAgentImpl implements PopularMovieDataAgent {
         theAPI = retrofit.create(PopularMovieAPI.class);
     }
 
-    public static PopularMovieDataAgentImpl getObjInstance(){
 
-        if(objInstance == null){
-
-            objInstance = new PopularMovieDataAgentImpl();
-
-        }
-
-        return objInstance;
-    }
 
 
     @Override

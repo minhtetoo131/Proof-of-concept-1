@@ -5,8 +5,11 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.minhtetoo.proofofconcept.ProofOfConcept;
+import com.minhtetoo.proofofconcept.dagger.AppComponent;
 import com.minhtetoo.proofofconcept.data.vo.PopularMovieVO;
 import com.minhtetoo.proofofconcept.events.RestApiEvents;
+import com.minhtetoo.proofofconcept.network.PopularMovieDataAgent;
 import com.minhtetoo.proofofconcept.network.PopularMovieDataAgentImpl;
 import com.minhtetoo.proofofconcept.persistence.MovieContract;
 import com.minhtetoo.proofofconcept.utils.AppConstants;
@@ -17,35 +20,34 @@ import org.greenrobot.eventbus.Subscribe;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 /**
  * Created by min on 12/7/2017.
  */
 
 public class PopularMovieModel {
 
-    private static PopularMovieModel objInstance;
     private List<PopularMovieVO> PopularMovies;
     int mPopularMoviePageIndex=1;
 
-    private PopularMovieModel() {
+    @Inject
+    PopularMovieDataAgent popularMovieDataAgent;
+
+    public PopularMovieModel(Context context) {
         EventBus.getDefault().register(this);
         PopularMovies = new ArrayList<>();
 
+        AppComponent appComponent = ((ProofOfConcept)(context)).getAppComponent();
+        appComponent.inject(this); //register consumer
+
+
     }
 
-    public static PopularMovieModel getObjInstance(){
 
-        if(objInstance == null){
-
-            objInstance = new PopularMovieModel();
-
-        }
-
-        return objInstance;
-    }
 
     public void startloadingPopularMovie(Context context){
-        PopularMovieDataAgentImpl.getObjInstance().loadPopularMovies(AppConstants.ACESS_TOKEN,
+        popularMovieDataAgent.loadPopularMovies(AppConstants.ACESS_TOKEN,
                 mPopularMoviePageIndex,context);
 
     }
@@ -56,7 +58,7 @@ public class PopularMovieModel {
     }
 
     public void loadMoreMOvies(Context context) {
-       PopularMovieDataAgentImpl.getObjInstance().loadPopularMovies(AppConstants.ACESS_TOKEN,
+        popularMovieDataAgent.loadPopularMovies(AppConstants.ACESS_TOKEN,
                mPopularMoviePageIndex,context);
 
     }
